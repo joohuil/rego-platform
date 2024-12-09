@@ -1,6 +1,13 @@
+import { useNavigate } from "react-router"
+
 const SignupPage = () => {
+    const navigate = useNavigate()
+
     return (
-        <h1>Sign up</h1>
+        <div>
+            <h1>Sign up</h1>
+            <button onClick={() => navigate("/login")}>Create Account</button>
+        </div>
     )
 }
 
