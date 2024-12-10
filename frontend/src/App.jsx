@@ -5,7 +5,6 @@ import LoginPage from './pages/LoginPage'
 import SignupPage from './pages/SignupPage'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import accountsService from './services/accounts'
 
 function App() {
   const [user, setUser] = useState ({
@@ -21,24 +20,7 @@ function App() {
             ]
         })
   const [events, setEvents] = useState([])
-  const [accounts, setAccounts] = useState([])
-
-  useEffect(() => {
-      async function getAccounts() {
-          await accountsService
-              .getAll()
-              .then(response => {
-                  console.log('promise fulfilled accounts')
-                  setAccounts(response.data)
-                  console.log(accounts)
-              })
-              .catch (error => {
-                  console.log(error.response.data.error)
-              })
-      }
-      getAccounts()
-  }, [])
-
+      
   useEffect(() => {
     async function getEvents() {
         try {
@@ -54,14 +36,14 @@ function App() {
         }
     }
     getEvents()
-}, [])
+  }, [])
 
   return (
     <Routes>
       <Route path="/" element={<LandingPage user={user} setUser={setUser} events={events}/>} />
       <Route path="/login" element={<LoginPage />} />
-      <Route path="/signup" element={<SignupPage accounts={accounts} setAccounts={setAccounts}/>} />
-      <Route path="/admin" element={<AdminPage user={user} events={events} setEvents={setEvents} accounts={accounts}/>} />
+      <Route path="/signup" element={<SignupPage/>} />
+      <Route path="/admin" element={<AdminPage user={user} events={events} setEvents={setEvents} />} />
     </Routes>
   )
 }

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router"
 import accountsService from '../services/accounts'
 
-const SignupPage = ({ accounts, setAccounts }) => {
+const SignupPage = () => {
     const navigate = useNavigate()
 
     const handleSignup = (event) => {
@@ -21,8 +21,6 @@ const SignupPage = ({ accounts, setAccounts }) => {
                 .register(newUser)
                 .then(response => {
                     console.log('promise fulfilled register')
-                    setAccounts(accounts.concat(response.data))
-                    console.log(accounts)
                     navigate("/login")
                 })
                 .catch (error => {
