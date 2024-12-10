@@ -1,27 +1,6 @@
 import EventCard from "./EventCard"
 
-const EventContainer = ({ user }) => {
-    const events = [
-        {
-            id: 1,
-            name: "Name1",
-            description: "Desc1",
-            date: "Date1"
-        },
-        {
-            id: 2,
-            name: "Name2",
-            description: "Desc2",
-            date: "Date2"
-        },
-        {
-            id: 3,
-            name: "Name3",
-            description: "Desc3",
-            date: "Date3"
-        }
-    ]
-
+const EventContainer = ({ user, events }) => {
     return (
         <div className="border-black rounded-xl border-2 px-5 my-5">
             {events.map(event => 

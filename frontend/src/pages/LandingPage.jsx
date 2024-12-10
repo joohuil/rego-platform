@@ -2,7 +2,7 @@ import { useNavigate } from "react-router"
 import EventContainer from '../components/EventContainer'
 import UserCard from "../components/UserCard"
 
-const LandingPage = ({ user, setUser }) => {
+const LandingPage = ({ user, setUser, events }) => {
     const navigate = useNavigate()
     const handleSignOut = (e) => {
         setUser(null)
@@ -17,7 +17,7 @@ const LandingPage = ({ user, setUser }) => {
                         <button onClick={handleSignOut}>Sign Out</button> 
                     </div>
                     <div className="grid grid-cols-2 gap-8">
-                        <EventContainer user={user}/>
+                        <EventContainer user={user} events={events}/>
                         <UserCard user={user}/>
                     </div>
                 </div>
@@ -25,7 +25,7 @@ const LandingPage = ({ user, setUser }) => {
                     <div className="flex flex-row justify-end">
                         <button onClick={() => navigate("login")}>Log In</button>
                     </div>
-                    <EventContainer />
+                    <EventContainer user={user} events={events}/>
                 </div>}
         </div>
         
