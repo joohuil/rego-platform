@@ -11,18 +11,17 @@ const [accounts, setAccounts] = useState([])
         async function getAccounts() {
             await accountsService
                 .getAll()
-                 .then(response => {
+                .then(response => {
                     console.log('promise fulfilled accounts')
                     setAccounts(response.data)
                     console.log(accounts)
                 })
-                 .catch (error => {
-                     console.log(error.response.data.error)
-                  })
+                .catch (error => {
+                    console.log(error.response.data.error)
+                })
         }
          getAccounts()
     }, [])
-
 
     return (
         <div>
@@ -34,7 +33,7 @@ const [accounts, setAccounts] = useState([])
                     <h2>Accounts</h2>
                     <AccountContainer accounts={accounts}/>
                 </div>
-                <EventForm />
+                <EventForm events={events} setEvents={setEvents}/>
             </div>
         </div>
     )

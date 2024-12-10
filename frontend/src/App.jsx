@@ -4,36 +4,35 @@ import AdminPage from './pages/AdminPage'
 import LoginPage from './pages/LoginPage'
 import SignupPage from './pages/SignupPage'
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+import eventsService from './services/events'
 
 function App() {
   const [user, setUser] = useState ({
-            email: "email2",
-            name: "name2",
-            events: [
-                    {
-                    id: 2,
-                    name: "Name2",
-                    description: "Desc2",
-                    date: "Date2"
-                }
-            ]
-        })
+    email: "email2",
+    name: "name2",
+    events: [
+      {
+        id: 2,
+        name: "Name2",
+        description: "Desc2",
+        date: "Date2"
+      }
+    ]
+  })
   const [events, setEvents] = useState([])
       
   useEffect(() => {
     async function getEvents() {
-        try {
-            const response = await axios
-                .get('http://localhost:3001/api/events')
-                .then(response => {
-                    console.log('promise fulfilled events')
-                    setEvents(response.data)
-                })
-            console.log(events)
-        } catch (error){
-            console.log(error.response.data.error)
-        }
+      await eventsService
+        .getAll()
+        .then(response => {
+          console.log('promise fulfilled events')
+          setEvents(response.data)
+          console.log(events)
+        })
+        .catch(error => {
+          console.log(error.response.data.error)
+        })
     }
     getEvents()
   }, [])

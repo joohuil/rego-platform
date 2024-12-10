@@ -76,6 +76,32 @@ app.get('/api/events', (request, response) => {
     response.json (events)
 })
 
+app.post('/api/events', (request, response) => {
+    const body = request.body
+    console.log(body, 'body')
+    if (!body.name) {
+        return response.status(400).json({
+            error: 'name missing'
+        })
+    }
+
+    const event = {
+        name: body.name,
+        desc: body.desc,
+        date: body.date
+    }
+
+    const existing = events.find(e => e.name === event.name && e.date === event.date)
+    if (existing) {
+        return response.status(409).json({
+            error: 'this event already exists'
+        })
+    }
+
+    events = events.concat(event)
+    response.json(event)
+})
+
 app.get('/api/accounts', (request, response) => {
     response.json (accounts)
 })

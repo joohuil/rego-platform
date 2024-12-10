@@ -1,11 +1,33 @@
-const EventForm = () => {
+import eventsService from '../services/events'
+
+const EventForm = ({ events, setEvents }) => {
 
     const handleCreateEvent = (event) => {
         event.preventDefault()
         console.log(event.target.name.value, event.target.desc.value, event.target.date.value)
-        event.target.name.value = ''
-        event.target.desc.value = ''
-        event.target.date.value = ''
+        const newEvent = {
+            name: event.target.name.value,
+            desc: event.target.desc.value,
+            date: event.target.date.value
+        }
+
+        console.log(newEvent)
+
+        async function createEvent() {
+            await eventsService
+                .create(newEvent)
+                .then(response => {
+                    console.log('promise fulfilled create')
+                    event.target.name.value = ''
+                    event.target.desc.value = ''
+                    event.target.date.value = ''
+                    setEvents(events.concat(newEvent))
+                })
+                .catch (error => {
+                    console.log(error)
+                })
+        }
+        createEvent()
     }
 
     return (
