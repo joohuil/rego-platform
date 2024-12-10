@@ -1,8 +1,28 @@
-const UserCard = ({ user }) => {
+import accountsService from '../services/accounts'
+
+const UserCard = ({ user, setUser }) => {
     const handleEditName = (e) => {
         e.preventDefault()
         console.log(e.target.newName.value)
-        e.target.newName.value = ''
+        const updatedUser = {
+            ...user,
+            name: e.target.newName.value
+        }
+
+        async function editName (updatedUser) {
+            await accountsService
+                .update(user.email, updatedUser)
+                .then(response => {
+                    console.log('promise fulfilled edit')
+                    setUser(response.data)
+                    console.log(user)
+                    e.target.newName.value = ''
+                })
+                .catch (error => {
+                    console.log(error.response.data.error)
+                })
+        }
+        editName (updatedUser)
     }
     
     return (

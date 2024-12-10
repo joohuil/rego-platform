@@ -18,7 +18,7 @@ const LandingPage = ({ user, setUser, events }) => {
                     </div>
                     <div className="grid grid-cols-2 gap-8">
                         <EventContainer user={user} events={events}/>
-                        <UserCard user={user}/>
+                        <UserCard user={user} setUser={setUser}/>
                     </div>
                 </div>
                 : <div>

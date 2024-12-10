@@ -103,7 +103,8 @@ app.post('/api/events', (request, response) => {
 })
 
 app.get('/api/accounts', (request, response) => {
-    response.json (accounts)
+    // without password field
+    response.json (accounts.map (({ password, ...rest }) => rest))
 })
 
 app.post('/api/accounts', (request, response) => {
@@ -131,6 +132,20 @@ app.post('/api/accounts', (request, response) => {
 
     accounts = accounts.concat(account)
     response.json(account)
+})
+
+app.put('/api/accounts/:email', (request, response) => {
+    const editedAccount = request.body
+    console.log(editedAccount)
+    const email = request.params.email
+    const user = accounts.find(a => a.email === email)
+
+    if (user) {
+        accounts = accounts.map(a => a.email === email ? editedAccount : a)
+        response.json(editedAccount)
+    } else {
+        response.status(404).end()
+    }
 })
 
 // const PORT = process.env.PORT || 3001

@@ -20,7 +20,7 @@ const [accounts, setAccounts] = useState([])
                     console.log(error.response.data.error)
                 })
         }
-         getAccounts()
+        getAccounts()
     }, [])
 
     return (

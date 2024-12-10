@@ -10,8 +10,8 @@ const register = newObject => {
   return axios.post(baseUrl, newObject)
 }
 
-const update = (id, newObject) => {
-  return axios.put(`${baseUrl}/${id}`, newObject)
+const update = (email, newObject) => {
+  return axios.put(`${baseUrl}/${email}`, newObject)
 }
 
 export default { 
