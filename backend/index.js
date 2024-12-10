@@ -4,19 +4,16 @@ const url = process.env.MONGODB_URI;
 
 let events = [
     {
-      id: 1,
       name: "Name1",
       description: "Desc1",
       date: "Date1"
     },
     {
-      id: 2,
       name: "Name2",
       description: "Desc2",
       date: "Date2"
     },
     {
-      id: 3,
       name: "Name3",
       description: "Desc3",
       date: "Date3"
@@ -29,13 +26,11 @@ let events = [
             name: "name1",
             events: [
                 {
-                    id: 1,
                     name: "Name1",
                     description: "Desc1",
                     date: "Date1"
                 }, 
                 {
-                    id: 2,
                     name: "Name2",
                     description: "Desc2",
                     date: "Date2"
@@ -48,7 +43,6 @@ let events = [
             name: "name2",
             events: [
                     {
-                    id: 2,
                     name: "Name2",
                     description: "Desc2",
                     date: "Date2"
@@ -87,7 +81,7 @@ app.post('/api/events', (request, response) => {
 
     const event = {
         name: body.name,
-        desc: body.desc,
+        description: body.description,
         date: body.date
     }
 
@@ -136,7 +130,6 @@ app.post('/api/accounts', (request, response) => {
 
 app.put('/api/accounts/:email', (request, response) => {
     const editedAccount = request.body
-    console.log(editedAccount)
     const email = request.params.email
     const user = accounts.find(a => a.email === email)
 

@@ -33,7 +33,7 @@ const [accounts, setAccounts] = useState([])
                     <h2>Accounts</h2>
                     <AccountContainer accounts={accounts}/>
                 </div>
-                <EventForm events={events} setEvents={setEvents}/>
+                <EventForm events={events} setUser={(u) => {}} setEvents={setEvents}/>
             </div>
         </div>
     )

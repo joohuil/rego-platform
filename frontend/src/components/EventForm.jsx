@@ -4,10 +4,10 @@ const EventForm = ({ events, setEvents }) => {
 
     const handleCreateEvent = (event) => {
         event.preventDefault()
-        console.log(event.target.name.value, event.target.desc.value, event.target.date.value)
+        console.log(event.target.name.value, event.target.description.value, event.target.date.value)
         const newEvent = {
             name: event.target.name.value,
-            desc: event.target.desc.value,
+            description: event.target.description.value,
             date: event.target.date.value
         }
 
@@ -19,7 +19,7 @@ const EventForm = ({ events, setEvents }) => {
                 .then(response => {
                     console.log('promise fulfilled create')
                     event.target.name.value = ''
-                    event.target.desc.value = ''
+                    event.target.description.value = ''
                     event.target.date.value = ''
                     setEvents(events.concat(newEvent))
                 })
@@ -50,13 +50,13 @@ const EventForm = ({ events, setEvents }) => {
                 </div>
                 <div className="grid grid-cols-5 gap-6">
                     <label 
-                        htmlFor="desc" 
+                        htmlFor="description" 
                         className="col-start-2 col-span-1"
                     >
                         Description: 
                     </label>
                     <textarea 
-                        id="desc" 
+                        id="description" 
                         required 
                         className="col-start-3 col-span-2 border-[1px] rounded border-black resize-none"
                     />

@@ -11,6 +11,7 @@ const register = newObject => {
 }
 
 const update = (email, newObject) => {
+  console.log('axios', email, newObject)
   return axios.put(`${baseUrl}/${email}`, newObject)
 }
 
