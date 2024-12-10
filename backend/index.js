@@ -141,6 +141,19 @@ app.put('/api/accounts/:email', (request, response) => {
     }
 })
 
+app.post('/api/accounts/login', (request, response) => {
+    const body = request.body
+    console.log(body)
+    const match = accounts.find(a => a.email === body.email && a.password === body.password)
+    if (match) {
+        response.json(match)
+    } else {
+        return response.status(401).json({
+            error: 'credentials do not match'
+        })
+    }
+})
+
 // const PORT = process.env.PORT || 3001
 const PORT = 3001
 app.listen(PORT, () => {

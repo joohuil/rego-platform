@@ -6,17 +6,28 @@ const getAll = () => {
 }
 
 const register = newObject => {
-  console.log('axios', newObject)
   return axios.post(baseUrl, newObject)
 }
 
 const update = (email, newObject) => {
-  console.log('axios', email, newObject)
   return axios.put(`${baseUrl}/${email}`, newObject)
+}
+
+const login = (email, password) => {
+  return axios.post(
+    `${baseUrl}/login`, 
+    { email, password }, 
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  )
 }
 
 export default { 
   getAll: getAll, 
   register: register, 
-  update: update 
+  update: update,
+  login: login
 }

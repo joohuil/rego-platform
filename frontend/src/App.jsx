@@ -40,7 +40,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<LandingPage user={user} setUser={setUser} events={events}/>} />
-      <Route path="/login" element={<LoginPage />} />
+      <Route path="/login" element={<LoginPage setUser={setUser}/>} />
       <Route path="/signup" element={<SignupPage/>} />
       <Route path="/admin" element={<AdminPage user={user} events={events} setEvents={setEvents} />} />
     </Routes>

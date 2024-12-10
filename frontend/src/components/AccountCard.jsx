@@ -6,7 +6,7 @@ const AccountCard = (props) => {
             <h3>{email}</h3>
             <h3>{name}</h3>
             <ul>
-                {events.map(event => <li key={event.id}>{ event.name }</li>)}
+                {events.map(event => <li key={`${event.name}-${event.date}`}>{ event.name }</li>)}
             </ul>
         </div>
     )
