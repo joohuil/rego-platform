@@ -1,12 +1,35 @@
 import { useNavigate } from "react-router"
+import accountsService from '../services/accounts'
 
-const SignupPage = () => {
+const SignupPage = ({ accounts, setAccounts }) => {
     const navigate = useNavigate()
 
     const handleSignup = (event) => {
         event.preventDefault()
         console.log(event.target.email.value, event.target.pw.value, event.target.name.value)
-        navigate("/login")
+        const newUser = {
+            email: event.target.email.value,
+            password: event.target.pw.value,
+            name: event.target.name.value,
+            events: []
+        }
+
+        console.log(newUser)
+
+        async function signup() {
+            await accountsService
+                .register(newUser)
+                .then(response => {
+                    console.log('promise fulfilled register')
+                    setAccounts(accounts.concat(response.data))
+                    console.log(accounts)
+                    navigate("/login")
+                })
+                .catch (error => {
+                    console.log(error)
+                })
+        }
+        signup()
     }
 
     return (

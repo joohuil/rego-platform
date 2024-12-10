@@ -24,8 +24,8 @@ let events = [
   ]
   let accounts = [
         {
-            id: 1,
             email: "email1",
+            password: "1",
             name: "name1",
             events: [
                 {
@@ -43,8 +43,8 @@ let events = [
             ]
         },
         {
-            id: 2,
             email: "email2",
+            password: "2",
             name: "name2",
             events: [
                     {
@@ -56,8 +56,8 @@ let events = [
             ]
         },
         {
-            id: 3,
             email: "email3",
+            password: "3",
             name: "name3",
             events: []
         }
@@ -78,6 +78,33 @@ app.get('/api/events', (request, response) => {
 
 app.get('/api/accounts', (request, response) => {
     response.json (accounts)
+})
+
+app.post('/api/accounts', (request, response) => {
+    const body = request.body
+    console.log(body, 'body')
+    if (!body.email) {
+        return response.status(400).json({
+            error: 'content missing'
+        })
+    }
+
+    const account = {
+        email: body.email,
+        password: body.password,
+        name: body.name,
+        events: body.events || []
+    }
+
+    const existing = accounts.find(a => a.email === account.email)
+    if (existing) {
+        return response.status(409).json({
+            error: 'an account already exists under this email'
+        })
+    }
+
+    accounts = accounts.concat(account)
+    response.json(account)
 })
 
 // const PORT = process.env.PORT || 3001
