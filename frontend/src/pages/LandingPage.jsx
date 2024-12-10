@@ -10,18 +10,21 @@ const LandingPage = ({ user, setUser }) => {
 
     return (
         <div>
-            <h1>Landing</h1>
             {
                 user 
                 ? <div>
-                    <button onClick={handleSignOut}>Sign Out</button> 
-                    <div>
+                    <div className="flex flex-row justify-end">
+                        <button onClick={handleSignOut}>Sign Out</button> 
+                    </div>
+                    <div className="grid grid-cols-2 gap-8">
                         <EventContainer user={user}/>
                         <UserCard user={user}/>
                     </div>
                 </div>
                 : <div>
-                    <button onClick={() => navigate("login")}>Log In</button>
+                    <div className="flex flex-row justify-end">
+                        <button onClick={() => navigate("login")}>Log In</button>
+                    </div>
                     <EventContainer />
                 </div>}
         </div>

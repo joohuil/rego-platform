@@ -43,7 +43,7 @@ const AccountContainer = () => {
     ]
 
     return (
-        <div>
+        <div className="border-black rounded-xl border-2 px-5 my-5">
             {accounts.map(account => 
                 <AccountCard key={account.id} email={account.email} name={account.name} events={account.events}/>
             )}
