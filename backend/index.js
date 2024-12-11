@@ -12,6 +12,7 @@ import requestLogger from './middleware/requestLogger.js'
 import unknownEndpoint from './middleware/unknownEndpoint.js'
 import errorHandler from './middleware/errorHandler.js'
 import authentication from './middleware/authentication.js'
+import authorisation from './middleware/authorisation.js'
 
 app.use(cors())
 app.use(express.json())
@@ -24,7 +25,7 @@ app.get('/api/events', (request, response) => {
     })
 })
 
-app.post('/api/events', async (request, response, next) => {
+app.post('/api/events', authentication, authorisation, async (request, response, next) => {
     const body = request.body
 
     const event = new Event ({
@@ -48,7 +49,7 @@ app.post('/api/events', async (request, response, next) => {
         .catch(error => next(error))
 })
 
-app.get('/api/accounts', (request, response) => {
+app.get('/api/accounts', authentication, authorisation, (request, response) => {
     // without password field
     Account.find({}).then(accounts => {
         response.json(accounts)

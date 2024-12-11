@@ -1,9 +1,11 @@
 import axios from 'axios'
 const baseUrl = 'http://localhost:3001/api/accounts'
-const token = localStorage.getItem("token");
+const token = localStorage.getItem("token")
 
 const getAll = () => {
-  return axios.get(baseUrl)
+  return axios.get(baseUrl, {
+    headers: { Authorization: `Bearer ${token}` },
+  })
 }
 
 const register = newObject => {
