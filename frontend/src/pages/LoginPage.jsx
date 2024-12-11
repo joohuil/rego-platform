@@ -6,10 +6,13 @@ const LoginPage = ({ user, setUser }) => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (user) {
+        console.log('us', user)
+        if (user && user.email === "admin@gmail.com") {
+            navigate ('/admin')
+        } else if (user) {
             navigate ('/')
         }
-    })
+    }, [user])
 
     const [errorMessage, setErrorMessage] = useState(null)
 
@@ -25,6 +28,7 @@ const LoginPage = ({ user, setUser }) => {
                     console.log(response.data)
                     setUser (user)
                     localStorage.setItem("token", token)
+                    console.log('get', localStorage.getItem("token"))
                     navigate("/")
                 })
                 .catch(error => {

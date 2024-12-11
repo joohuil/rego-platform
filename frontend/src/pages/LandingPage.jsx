@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router"
+import { useEffect } from 'react'
 import EventContainer from '../components/EventContainer'
 import UserCard from "../components/UserCard"
 
@@ -7,7 +8,15 @@ const LandingPage = ({ user, setUser, events }) => {
     const navigate = useNavigate()
     const handleSignOut = (e) => {
         setUser(null)
+        localStorage.setItem("token", null)
     }
+
+    useEffect(() => {
+        console.log('us', user)
+        if (user && user.email === "admin@gmail.com") {
+            navigate ('/admin')
+        } 
+    }, [user])
 
     return (
         <div>

@@ -56,9 +56,17 @@ app.get('/api/accounts', authentication, authorisation, (request, response) => {
     })
 })
 
+app.get('/api/accounts/:email', authentication, async (request, response) => {
+    const email = request.params.email
+    Account.findOne({ email: email })
+        .then(account => {
+            response.json(account)
+        }
+    )
+})
+
 app.post('/api/accounts', async (request, response, next) => {
     const body = request.body
-    console.log(body, 'body')
     if (!body.email) {
         return response.status(400).json({
             error: 'email missing'
@@ -90,7 +98,7 @@ app.post('/api/accounts', async (request, response, next) => {
 
 app.put('/api/accounts/:email', authentication, async (request, response, next) => {
     const editedAccount = request.body
-    console.log(editedAccount)
+    console.log('edited', editedAccount)
     const email = request.params.email
 
     Account.findOne ({ email: email })
@@ -108,7 +116,7 @@ app.put('/api/accounts/:email', authentication, async (request, response, next) 
 
 app.put('/api/accounts/:email/events', authentication, async (request, response, next) => {
     const editedAccount = request.body
-    console.log(editedAccount)
+    console.log('edited', editedAccount)
     const email = request.params.email
 
     Account.findOne ({ email: email })

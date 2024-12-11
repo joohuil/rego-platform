@@ -29,7 +29,6 @@ const EventCard = (props) => {
 
     const isJoined = () => {
         const event = user.events.find (e => e.name === name && e.date === date)
-        console.log ('user events', event)
         return event
     }
 

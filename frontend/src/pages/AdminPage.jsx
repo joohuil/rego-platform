@@ -5,13 +5,13 @@ import { useState, useEffect } from 'react'
 import accountsService from '../services/accounts'
 import { useNavigate } from "react-router"
 
-const AdminPage = ({ user, events, setEvents }) => {
+const AdminPage = ({ user, setUser, events, setEvents }) => {
     const navigate = useNavigate()
     useEffect(() => {
-        if (!user || user.email !== "admin@gmail.com") {
+        if (user && user.email !== "admin@gmail.com" || localStorage.getItem("token") === 'null') {
             navigate('/')
         }
-    })
+    }, [user])
     
     const [accounts, setAccounts] = useState([])
     const [errorMessage, setErrorMessage] = useState(null)
@@ -33,9 +33,17 @@ const AdminPage = ({ user, events, setEvents }) => {
         getAccounts()
     }, [])
 
+    const handleSignOut = (e) => {
+        setUser(null)
+        localStorage.setItem("token", null)
+    }
+
     return (
         <div>
             <h1 className="mb-7">Admin</h1>
+            <div className="flex flex-row justify-end">
+                <button onClick={handleSignOut}>Sign Out</button> 
+            </div>
             <div className="grid grid-cols-2 gap-8">
                 <div>
                     <h2>Events</h2>

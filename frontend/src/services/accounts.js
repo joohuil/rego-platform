@@ -1,9 +1,16 @@
 import axios from 'axios'
 const baseUrl = 'http://localhost:3001/api/accounts'
 const token = localStorage.getItem("token")
+console.log('cur tok', token)
 
 const getAll = () => {
   return axios.get(baseUrl, {
+    headers: { Authorization: `Bearer ${token}` },
+  })
+}
+
+const get = (email) => {
+  return axios.get(`${baseUrl}/${email}`, {
     headers: { Authorization: `Bearer ${token}` },
   })
 }
@@ -13,6 +20,7 @@ const register = newObject => {
 }
 
 const update = (email, newObject) => {
+  console.log('cur tok', token)
   return axios.put(`${baseUrl}/${email}`, newObject, {
     headers: { Authorization: `Bearer ${token}` },
   })
@@ -38,6 +46,7 @@ const login = (email, password) => {
 
 export default { 
   getAll: getAll, 
+  get: get,
   register: register, 
   update: update,
   addEvent: addEvent,

@@ -4,7 +4,7 @@ dotenv.config()
 
 const authentication = async (request, response, next) => {
     const token = request.headers.authorization?.split(' ')[1]
-    console.log(token)
+    console.log('header', request.headers.authorization)
   
     if (!token) {
         console.log('access')
@@ -12,6 +12,7 @@ const authentication = async (request, response, next) => {
     }
   
     try {
+        console.log(token)
         const { email } = jwt.verify(token, process.env.SECRET_KEY)
         request.user = email
         next()

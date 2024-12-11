@@ -7,6 +7,7 @@ const authorisation = async (request, response, next) => {
     }
     
     if (user !== "admin@gmail.com") {
+        console.log('user:', user)
         return response.status(403).json({
             error: "Forbidden, unauthorised.",
         })
