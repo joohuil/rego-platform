@@ -58,7 +58,7 @@ const EventForm = ({ events, setEvents }) => {
                     <textarea 
                         id="description" 
                         required 
-                        className="col-start-3 col-span-2 border-[1px] rounded border-black resize-none"
+                        className="col-start-3 col-span-2 border-[1px] rounded border-black resize-none border-solid py-[7px] px-[10px] text-sm"
                     />
                 </div>
                 <div className="grid grid-cols-5 gap-6 py-5">

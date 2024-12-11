@@ -1,5 +1,6 @@
 const AccountCard = (props) => {
     const { email, name, events } = props
+    console.log(events)
 
     return (
         <div className="flex flex-col border-2 border-black rounded-lg w-full justify-center p-5 my-5">

@@ -8,6 +8,7 @@ const UserCard = ({ user, setUser }) => {
             ...user,
             name: e.target.newName.value
         }
+        console.log('upd', updatedUser)
 
         async function editName (updatedUser) {
             await accountsService
@@ -15,7 +16,7 @@ const UserCard = ({ user, setUser }) => {
                 .then(response => {
                     console.log('promise fulfilled edit')
                     setUser(response.data)
-                    console.log(user)
+                    console.log(response.data)
                     e.target.newName.value = ''
                 })
                 .catch (error => {

@@ -13,6 +13,7 @@ const [accounts, setAccounts] = useState([])
                 .getAll()
                 .then(response => {
                     console.log('promise fulfilled accounts')
+                    console.log('resp', response.data)
                     setAccounts(response.data)
                     console.log(accounts)
                 })

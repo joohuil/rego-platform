@@ -16,7 +16,7 @@ const EventCard = (props) => {
 
         async function addEvent(editedUser) {
            await accountsService
-            .update(user.email, editedUser)
+            .addEvent(user.email, editedUser)
             .then(response => {
                 setUser(response.data)
             })
@@ -45,7 +45,7 @@ const EventCard = (props) => {
                     user && user.email !== "admin"
                     ? 
                         <button 
-                            onClick={handleJoin} 
+                            onClick={isJoined() ? () => {}: handleJoin} 
                             className={isJoined() ? "disabled text-gray-500 border-gray-500 hover:text-gray-500 hover:border-gray-500 cursor-default" : ""}
                         >
                             {isJoined() ? 'Joined!' : 'Join'}

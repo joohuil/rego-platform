@@ -13,6 +13,10 @@ const update = (email, newObject) => {
   return axios.put(`${baseUrl}/${email}`, newObject)
 }
 
+const addEvent = (email, newObject) => {
+  return axios.put(`${baseUrl}/${email}/events`, newObject)
+}
+
 const login = (email, password) => {
   return axios.post(
     `${baseUrl}/login`, 
@@ -29,5 +33,6 @@ export default {
   getAll: getAll, 
   register: register, 
   update: update,
+  addEvent: addEvent,
   login: login
 }
