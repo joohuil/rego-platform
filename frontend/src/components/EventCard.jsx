@@ -42,7 +42,7 @@ const EventCard = (props) => {
             </div>
             <div className="flex flex-row h-min self-center">
                 {
-                    user && user.email !== "admin"
+                    user && user.email !== "admin@gmail.com"
                     ? 
                         <button 
                             onClick={isJoined() ? () => {}: handleJoin} 

@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router"
+import { useState } from "react"
 import accountsService from '../services/accounts'
 
 const SignupPage = () => {
     const navigate = useNavigate()
+    const [errorMessage, setErrorMessage] = useState(null)
 
     const handleSignup = (event) => {
         event.preventDefault()
@@ -24,7 +26,7 @@ const SignupPage = () => {
                     navigate("/login")
                 })
                 .catch (error => {
-                    console.log(error)
+                    setErrorMessage(error.response.data.error)
                 })
         }
         signup()
@@ -79,6 +81,12 @@ const SignupPage = () => {
                     <button type="submit">Create Account</button>
                 </div>
             </form>
+            {errorMessage 
+                ? <div className="py-5 px-7 m-10 rounded-xl bg-pink-200 justify-self-center">
+                    <p>{errorMessage}</p>
+                </div>
+                : null
+            }
         </div>
     )
 }

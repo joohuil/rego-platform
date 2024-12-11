@@ -3,9 +3,18 @@ import AccountContainer from "../components/AccountContainer"
 import EventForm from "../components/EventForm"
 import { useState, useEffect } from 'react'
 import accountsService from '../services/accounts'
+import { useNavigate } from "react-router"
 
 const AdminPage = ({ user, events, setEvents }) => {
-const [accounts, setAccounts] = useState([])
+    const navigate = useNavigate()
+    useEffect(() => {
+        if (!user || user.email !== "admin@gmail.com") {
+            navigate('/')
+        }
+    })
+    
+    const [accounts, setAccounts] = useState([])
+    const [errorMessage, setErrorMessage] = useState(null)
 
     useEffect(() => {
         async function getAccounts() {
@@ -34,7 +43,15 @@ const [accounts, setAccounts] = useState([])
                     <h2>Accounts</h2>
                     <AccountContainer accounts={accounts}/>
                 </div>
-                <EventForm events={events} setUser={(u) => {}} setEvents={setEvents}/>
+                <div>
+                    <EventForm events={events} setUser={(u) => {}} setEvents={setEvents} setErrorMessage={setErrorMessage}/>
+                    {errorMessage 
+                        ? <div className="py-5 px-7 m-10 rounded-xl bg-pink-200 justify-self-center">
+                            <p>{errorMessage}</p>
+                        </div>
+                        : null
+                    }
+                </div>
             </div>
         </div>
     )

@@ -1,8 +1,9 @@
 import eventsService from '../services/events'
 
-const EventForm = ({ events, setEvents }) => {
+const EventForm = ({ events, setEvents, setErrorMessage }) => {
 
     const handleCreateEvent = (event) => {
+        setErrorMessage(null)
         event.preventDefault()
         console.log(event.target.name.value, event.target.description.value, event.target.date.value)
         const newEvent = {
@@ -24,7 +25,7 @@ const EventForm = ({ events, setEvents }) => {
                     setEvents(events.concat(newEvent))
                 })
                 .catch (error => {
-                    console.log(error)
+                    setErrorMessage(error.response.data.error)
                 })
         }
         createEvent()

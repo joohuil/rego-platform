@@ -30,61 +30,6 @@ const errorHandler = (error, request, response, next) => {
     next(error)
 }
 
-// let events = [
-//     {
-//       name: "Name1",
-//       description: "Desc1",
-//       date: "Date1"
-//     },
-//     {
-//       name: "Name2",
-//       description: "Desc2",
-//       date: "Date2"
-//     },
-//     {
-//       name: "Name3",
-//       description: "Desc3",
-//       date: "Date3"
-//     }
-//   ]
-//   let accounts = [
-//         {
-//             email: "email1",
-//             password: "1",
-//             name: "name1",
-//             events: [
-//                 {
-//                     name: "Name1",
-//                     description: "Desc1",
-//                     date: "Date1"
-//                 }, 
-//                 {
-//                     name: "Name2",
-//                     description: "Desc2",
-//                     date: "Date2"
-//                 }
-//             ]
-//         },
-//         {
-//             email: "email2",
-//             password: "2",
-//             name: "name2",
-//             events: [
-//                     {
-//                     name: "Name2",
-//                     description: "Desc2",
-//                     date: "Date2"
-//                 }
-//             ]
-//         },
-//         {
-//             email: "email3",
-//             password: "3",
-//             name: "name3",
-//             events: []
-//         }
-//     ]
-
 app.use(cors())
 app.use(express.json())
 app.use(requestLogger)
@@ -105,11 +50,11 @@ app.post('/api/events', async (request, response, next) => {
         date: body.date
     })
 
-    const query = Event.findOne ({ name: event.name, date: event.date})
+    const query = Event.findOne ({ name: event.name, date: event.date })
     const existing = await query.exec()
     if (existing) {
         return response.status(409).json({
-            error: 'this event already exists'
+            error: 'This event already exists. Please create a new event.'
         })
     }
 
@@ -148,7 +93,7 @@ app.post('/api/accounts', async (request, response, next) => {
 
     if (existing) {
         return response.status(409).json({
-            error: 'an account already exists under this email'
+            error: 'An account already exists under this email.'
         })
     }
 
@@ -203,7 +148,7 @@ app.post('/api/accounts/login', async (request, response) => {
         response.json(match)
     } else {
         return response.status(401).json({
-            error: 'credentials do not match'
+            error: 'This user does not exist or the password is incorrect. Please try again.'
         })
     }
 })

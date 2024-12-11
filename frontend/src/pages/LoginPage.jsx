@@ -1,8 +1,17 @@
 import { useNavigate } from "react-router"
+import { useState, useEffect } from "react"
 import accountsService from '../services/accounts'
 
-const LoginPage = ({ setUser }) => {
+const LoginPage = ({ user, setUser }) => {
     const navigate = useNavigate()
+
+    useEffect(() => {
+        if (user) {
+            navigate ('/')
+        }
+    })
+
+    const [errorMessage, setErrorMessage] = useState(null)
 
     const handleLogin = (event) => {
         event.preventDefault()
@@ -17,7 +26,7 @@ const LoginPage = ({ setUser }) => {
                     navigate("/")
                 })
                 .catch(error => {
-                    console.log(error.response.data.error)
+                    setErrorMessage(error.response.data.error)
                 })
         }
         login(event.target.email.value, event.target.pw.value)
@@ -62,6 +71,12 @@ const LoginPage = ({ setUser }) => {
                 <p className="my-1 mr-2">Don't have an account?</p>
                 <button onClick={() => navigate("/signup")}>Create an Account</button>
             </div>
+            {errorMessage 
+                ? <div className="py-5 px-7 m-10 rounded-xl bg-pink-200 justify-self-center">
+                    <p>{errorMessage}</p>
+                </div>
+                : null
+            }
         </div>
     )
 }

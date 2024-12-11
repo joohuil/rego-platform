@@ -7,18 +7,7 @@ import { useState, useEffect } from 'react'
 import eventsService from './services/events'
 
 function App() {
-  const [user, setUser] = useState ({
-    email: "email2",
-    name: "name2",
-    events: [
-      {
-        id: 2,
-        name: "Name2",
-        description: "Desc2",
-        date: "Date2"
-      }
-    ]
-  })
+  const [user, setUser] = useState(null)
   const [events, setEvents] = useState([])
       
   useEffect(() => {
@@ -40,7 +29,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<LandingPage user={user} setUser={setUser} events={events}/>} />
-      <Route path="/login" element={<LoginPage setUser={setUser}/>} />
+      <Route path="/login" element={<LoginPage user={user} setUser={setUser}/>} />
       <Route path="/signup" element={<SignupPage/>} />
       <Route path="/admin" element={<AdminPage user={user} events={events} setEvents={setEvents} />} />
     </Routes>
