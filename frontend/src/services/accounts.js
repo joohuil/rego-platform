@@ -1,5 +1,6 @@
 import axios from 'axios'
 const baseUrl = 'http://localhost:3001/api/accounts'
+const token = localStorage.getItem("token");
 
 const getAll = () => {
   return axios.get(baseUrl)
@@ -10,11 +11,15 @@ const register = newObject => {
 }
 
 const update = (email, newObject) => {
-  return axios.put(`${baseUrl}/${email}`, newObject)
+  return axios.put(`${baseUrl}/${email}`, newObject, {
+    headers: { Authorization: `Bearer ${token}` },
+  })
 }
 
 const addEvent = (email, newObject) => {
-  return axios.put(`${baseUrl}/${email}/events`, newObject)
+  return axios.put(`${baseUrl}/${email}/events`, newObject, {
+    headers: { Authorization: `Bearer ${token}` },
+  })
 }
 
 const login = (email, password) => {

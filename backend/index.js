@@ -3,6 +3,7 @@ const app = express()
 import cors from 'cors'
 import dotenv from 'dotenv'
 dotenv.config()
+import jwt from 'jsonwebtoken'
 
 import Event from './models/event.js'
 import Account from './models/account.js'
@@ -10,6 +11,7 @@ import Account from './models/account.js'
 import requestLogger from './middleware/requestLogger.js'
 import unknownEndpoint from './middleware/unknownEndpoint.js'
 import errorHandler from './middleware/errorHandler.js'
+import authentication from './middleware/authentication.js'
 
 app.use(cors())
 app.use(express.json())
@@ -85,7 +87,7 @@ app.post('/api/accounts', async (request, response, next) => {
         .catch(error => next(error))
 })
 
-app.put('/api/accounts/:email', async (request, response, next) => {
+app.put('/api/accounts/:email', authentication, async (request, response, next) => {
     const editedAccount = request.body
     console.log(editedAccount)
     const email = request.params.email
@@ -103,7 +105,7 @@ app.put('/api/accounts/:email', async (request, response, next) => {
         .catch(error => next(error))
 })
 
-app.put('/api/accounts/:email/events', async (request, response, next) => {
+app.put('/api/accounts/:email/events', authentication, async (request, response, next) => {
     const editedAccount = request.body
     console.log(editedAccount)
     const email = request.params.email
@@ -124,9 +126,14 @@ app.put('/api/accounts/:email/events', async (request, response, next) => {
 app.post('/api/accounts/login', async (request, response) => {
     const body = request.body
     
-    const match = await Account.findOne({email: body.email, password: body.password}).exec()
-    if (match) {
-        response.json(match)
+    const user = await Account.findOne({email: body.email, password: body.password}).exec()
+    if (user) {
+        const token = jwt.sign(
+            { email: user.email },
+            process.env.SECRET_KEY,
+            { expiresIn: process.env.TOKEN_EXPIRY }
+        )
+        response.json({user, token});
     } else {
         return response.status(401).json({
             error: 'This user does not exist or the password is incorrect. Please try again.'

@@ -21,8 +21,10 @@ const LoginPage = ({ user, setUser }) => {
             await accountsService
                 .login (email, pw)
                 .then (response => {
+                    const { user, token } = response.data
                     console.log(response.data)
-                    setUser (response.data)
+                    setUser (user)
+                    localStorage.setItem("token", token)
                     navigate("/")
                 })
                 .catch(error => {

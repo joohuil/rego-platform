@@ -1,4 +1,6 @@
-const mongoose = require('mongoose')
+import mongoose from'mongoose'
+import dotenv from 'dotenv'
+dotenv.config()
 
 mongoose.set('strictQuery', false)
 
@@ -33,4 +35,4 @@ eventSchema.set('toJSON', {
   }
 })
 
-module.exports = mongoose.model('Event', eventSchema)
+export default mongoose.model('Event', eventSchema)
