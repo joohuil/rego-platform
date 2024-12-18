@@ -10,8 +10,9 @@ public class Event {
     private String description;
     private Date date;
 
-    public Event(String name, Date date) {
+    public Event(String name, Date date, String description) {
         this.name = name;
+        this.description = description;
         this.date = date;
     }
 

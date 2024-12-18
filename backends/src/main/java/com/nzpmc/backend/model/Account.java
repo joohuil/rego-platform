@@ -3,20 +3,22 @@ package com.nzpmc.backend.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Document("student")
-public class Student {
+public class Account {
     @Id
     private String email;
     private String name;
     private String password;
     private List<Event> events;
 
-    public Student (String email, String name, String password) {
+    public Account(String email, String name, String password, List<Event> events) {
         this.email = email;
         this.name = name;
         this.password = password;
+        this.events = events == null ? new ArrayList<>() : events;
     }
 
     public String getEmail() {
