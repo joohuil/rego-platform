@@ -1,14 +1,15 @@
 package com.nzpmc.backend.controller;
 
+import com.nzpmc.backend.dto.LoginRequest;
+import com.nzpmc.backend.dto.LoginResponse;
 import com.nzpmc.backend.model.Account;
-import com.nzpmc.backend.repository.AccountRepository;
 import com.nzpmc.backend.service.AccountService;
+import com.nzpmc.backend.service.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -18,10 +19,12 @@ import java.util.Optional;
 @RequestMapping("api/accounts")
 public class AccountController {
     private final AccountService accountService;
+    private final JwtService jwtService;
 
     @Autowired
-    public AccountController(AccountService accountService, AccountRepository accountRepository) {
+    public AccountController(AccountService accountService, JwtService jwtService) {
         this.accountService = accountService;
+        this.jwtService = jwtService;
     }
 
     @GetMapping
@@ -79,5 +82,16 @@ public class AccountController {
             return ResponseEntity.ok().body(existingAccount.get());
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @PostMapping("login")
+    public ResponseEntity<Object> login(@RequestBody LoginRequest loginRequest) {
+        Account account = accountService.getAccountByEmailAndPassword(loginRequest.getEmail(), loginRequest.getPassword());
+        System.out.println(account);
+        if (account != null) {
+            String token = jwtService.generateToken(loginRequest.getEmail());
+            return ResponseEntity.ok(new LoginResponse(account, token));
+        }
+        return ResponseEntity.status(401).body("This user does not exist or the password is incorrect. Please try again.");
     }
 }

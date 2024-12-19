@@ -29,4 +29,8 @@ public class AccountService {
         accountRepository.save(account);
         return account;
     }
+
+    public Account getAccountByEmailAndPassword (String email, String password) {
+        return accountRepository.findByEmailAndPassword(email, password);
+    }
 }
