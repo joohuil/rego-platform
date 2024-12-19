@@ -8,6 +8,7 @@ import com.nzpmc.backend.service.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,7 +35,12 @@ public class AccountController {
     }
 
     @GetMapping("{email}")
-    public ResponseEntity<Object> getAccountByEmail(@PathVariable String email) {
+    public ResponseEntity<Object> getAccountByEmail(@PathVariable String email, Authentication authentication) {
+        String loggedInEmail = authentication.getName();
+        if (!loggedInEmail.equals(email)) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(Map.of("error", "Access Denied: Email mismatch."));
+        }
+
         Optional<Account> account = accountService.getAccountByEmail(email);
         if (account.isPresent()) {
             return ResponseEntity.ok().body(account.get());
@@ -60,7 +66,12 @@ public class AccountController {
     }
 
     @PutMapping("{email}")
-    public ResponseEntity<Object> updateAccountName(@PathVariable String email, @RequestBody Account account) {
+    public ResponseEntity<Object> updateAccountName(@PathVariable String email, @RequestBody Account account, Authentication authentication) {
+        String loggedInEmail = authentication.getName();
+        if (!loggedInEmail.equals(email)) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(Map.of("error", "Access Denied: Email mismatch."));
+        }
+
         if (account.getName() == null || account.getName().isEmpty()) {
             return ResponseEntity.badRequest().body(Map.of("error", "Please provide a name to change to."));
         }
@@ -74,7 +85,12 @@ public class AccountController {
     }
 
     @PutMapping("{email}/events")
-    public ResponseEntity<Object> updateAccountEvents(@PathVariable String email, @RequestBody Account account) {
+    public ResponseEntity<Object> updateAccountEvents(@PathVariable String email, @RequestBody Account account, Authentication authentication) {
+        String loggedInEmail = authentication.getName();
+        if (!loggedInEmail.equals(email)) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(Map.of("error", "Access Denied: Email mismatch."));
+        }
+
         Optional<Account> existingAccount = accountService.getAccountByEmail(email);
         if (existingAccount.isPresent() && account.getEvents() != null) {
             existingAccount.get().setEvents(account.getEvents());
