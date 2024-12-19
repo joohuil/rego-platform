@@ -8,11 +8,14 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class JwtFilter extends OncePerRequestFilter {
@@ -34,8 +37,16 @@ public class JwtFilter extends OncePerRequestFilter {
             try {
                 String email = jwtService.extractEmail(token);
                 System.out.println("email from token : " + email);
-                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-                        email, null, Collections.emptyList());
+                UsernamePasswordAuthenticationToken authentication;
+                Set<SimpleGrantedAuthority> authorities = new HashSet<>();
+                if (email.equals("admin@gmail.com")) {
+                    authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+                    authentication = new UsernamePasswordAuthenticationToken(
+                            email, null, authorities);
+                } else {
+                    authentication = new UsernamePasswordAuthenticationToken(
+                            email, null, Collections.emptyList());
+                }
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             } catch (Exception e) {
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);

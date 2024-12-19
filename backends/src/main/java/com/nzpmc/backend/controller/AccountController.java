@@ -87,11 +87,11 @@ public class AccountController {
     @PostMapping("login")
     public ResponseEntity<Object> login(@RequestBody LoginRequest loginRequest) {
         Account account = accountService.getAccountByEmailAndPassword(loginRequest.getEmail(), loginRequest.getPassword());
-        System.out.println(account);
+        System.out.println("account " + account);
         if (account != null) {
             String token = jwtService.generateToken(loginRequest.getEmail());
             return ResponseEntity.ok(new LoginResponse(account, token));
         }
-        return ResponseEntity.status(401).body("This user does not exist or the password is incorrect. Please try again.");
+        return ResponseEntity.status(401).body(Map.of("error", "This user does not exist or the password is incorrect. Please try again."));
     }
 }
