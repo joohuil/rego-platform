@@ -1,9 +1,0 @@
-POST http://localhost:3001/api/accounts
-Content-Type: application/json
-
-{
-  "email": "h@g",
-  "password": 2,
-  "name": "hello",
-  "events": []
-}
