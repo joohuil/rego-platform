@@ -44,7 +44,7 @@ public class AccountController {
         if (account.getEmail() == null || account.getEmail().isEmpty() ||
                 account.getName() == null || account.getName().isEmpty() ||
                 account.getPassword() == null || account.getPassword().isEmpty()) {
-            return ResponseEntity.badRequest().body("Account details are required");
+            return ResponseEntity.badRequest().body(Map.of("error", "Account details are required"));
         }
         Optional<Account> existingAccount = accountService.getAccountByEmail(account.getEmail());
         if (existingAccount.isPresent()) {
@@ -59,7 +59,7 @@ public class AccountController {
     @PutMapping("{email}")
     public ResponseEntity<Object> updateAccountName(@PathVariable String email, @RequestBody Account account) {
         if (account.getName() == null || account.getName().isEmpty()) {
-            return ResponseEntity.badRequest().body("Please provide a name to change to.");
+            return ResponseEntity.badRequest().body(Map.of("error", "Please provide a name to change to."));
         }
         Optional<Account> existingAccount = accountService.getAccountByEmail(email);
         if (existingAccount.isPresent()) {

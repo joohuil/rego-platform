@@ -30,7 +30,7 @@ public class EventController {
     @PostMapping
     public ResponseEntity<Object> createEvent(@RequestBody Event event) {
         if (event.getName() == null || event.getDate() == null) {
-            return ResponseEntity.badRequest().body("Name and date are required.");
+            return ResponseEntity.badRequest().body(Map.of("error", "Name and date are required."));
         }
         Event existingEvent = eventService.getEvent(event);
         if (existingEvent != null) {

@@ -39,23 +39,25 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem("token")
-    const parts = token.split('.')
-    if (parts.length === 3) {
-      const decodedToken = getEmailFromToken(parts)
-      console.log('decode', decodedToken)
-      async function getUser() {
-        await accountsService
-          .get(decodedToken)
-          .then(response => {
-            setUser(response.data)
-            console.log("user", response.data)
-          })
-          .catch(error => {
-            console.log(error.response)
-          })
-          console.log(user)
+    if (token) {
+      const parts = token.split('.')
+      if (parts.length === 3) {
+        const decodedToken = getEmailFromToken(parts)
+        console.log('decode', decodedToken)
+        async function getUser() {
+          await accountsService
+            .get(decodedToken)
+            .then(response => {
+              setUser(response.data)
+              console.log("user", response.data)
+            })
+            .catch(error => {
+              console.log(error.response)
+            })
+            console.log(user)
+        }
+        getUser()
       }
-      getUser()
     }
   }, [])
 

@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = 'http://localhost:3001/api/events'
+const baseUrl = 'http://localhost:8080/api/events'
 const token = localStorage.getItem("token")
 console.log('cur tok', token)
 

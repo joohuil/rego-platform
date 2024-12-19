@@ -36,6 +36,7 @@ const AdminPage = ({ user, setUser, events, setEvents }) => {
     const handleSignOut = (e) => {
         setUser(null)
         localStorage.setItem("token", null)
+        navigate('/')
     }
 
     return (
