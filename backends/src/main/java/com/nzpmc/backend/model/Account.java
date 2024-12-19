@@ -1,5 +1,6 @@
 package com.nzpmc.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,6 +12,7 @@ public class Account {
     @Id
     private String email;
     private String name;
+    @JsonIgnore
     private String password;
     private List<Event> events;
 
