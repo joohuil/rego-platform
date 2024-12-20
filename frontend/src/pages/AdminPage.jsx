@@ -4,8 +4,10 @@ import EventForm from "../components/EventForm"
 import { useState, useEffect } from 'react'
 import accountsService from '../services/accounts'
 import { useNavigate } from "react-router"
+import { useToken } from "../contexts/TokenContext";
 
 const AdminPage = ({ user, setUser, events, setEvents }) => {
+    const { token, setToken } = useToken();
     const navigate = useNavigate()
     useEffect(() => {
         if (user && user.email !== "admin@gmail.com" || localStorage.getItem("token") === 'null') {
@@ -36,6 +38,7 @@ const AdminPage = ({ user, setUser, events, setEvents }) => {
     const handleSignOut = (e) => {
         setUser(null)
         localStorage.setItem("token", null)
+        setToken(null)
         navigate('/')
     }
 

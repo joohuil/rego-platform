@@ -1,17 +1,16 @@
 import axios from 'axios'
 const baseUrl = 'http://localhost:8080/api/accounts'
-const token = localStorage.getItem("token")
-console.log('current token from local storage in account service', token)
+console.log('current token from local storage in account service', localStorage.getItem("token"))
 
 const getAll = () => {
   return axios.get(baseUrl, {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
   })
 }
 
 const get = (email) => {
   return axios.get(`${baseUrl}/${email}`, {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
   })
 }
 
@@ -20,15 +19,15 @@ const register = newObject => {
 }
 
 const update = (email, newObject) => {
-  console.log('current token before we pass it through the update function', token)
+  console.log('current token before we pass it through the update function', localStorage.getItem("token"))
   return axios.put(`${baseUrl}/${email}`, newObject, {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
   })
 }
 
 const addEvent = (email, newObject) => {
   return axios.put(`${baseUrl}/${email}/events`, newObject, {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
   })
 }
 

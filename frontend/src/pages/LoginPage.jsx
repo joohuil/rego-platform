@@ -1,9 +1,11 @@
 import { useNavigate } from "react-router"
 import { useState, useEffect } from "react"
 import accountsService from '../services/accounts'
+import { useToken } from "../contexts/TokenContext";
 
 const LoginPage = ({ user, setUser }) => {
     const navigate = useNavigate()
+    const { token, setToken } = useToken()
 
     useEffect(() => {
         console.log('user when login page is loaded / user changes', user)
@@ -29,6 +31,7 @@ const LoginPage = ({ user, setUser }) => {
                     console.log("user returned by login", account)
                     setUser (account)
                     localStorage.setItem("token", token)
+                    setToken(token)
                     console.log('token retrieved from local storage', localStorage.getItem("token"))
                     navigate("/")
                 })
