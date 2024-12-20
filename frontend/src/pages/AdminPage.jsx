@@ -58,7 +58,7 @@ const AdminPage = ({ user, setUser, events, setEvents }) => {
                 <div>
                     <EventForm events={events} setUser={(u) => {}} setEvents={setEvents} setErrorMessage={setErrorMessage}/>
                     {errorMessage 
-                        ? <div className="py-5 px-7 m-10 rounded-xl bg-pink-200 justify-self-center">
+                        ? <div className="py-5 px-7 m-10 rounded-xl bg-indigo-200 justify-self-center">
                             <p>{errorMessage}</p>
                         </div>
                         : null

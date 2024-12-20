@@ -43,50 +43,54 @@ const LoginPage = ({ user, setUser }) => {
     }
 
     return (
-        <div>
-            <form onSubmit={handleLogin}>
-                <div className="grid grid-cols-5 gap-6 py-5 pt-[20%]">
+        <div className="flex flex-col justify-center items-center">
+            {/* [#6e8699] */}
+            <div className="border-white border-2 rounded-2xl bg-indigo-300 w-[500px] mt-[7%] text-white flex flex-col items-center">
+                <form onSubmit={handleLogin} className="w-[300px] flex flex-col pt-16 pb-5">
                     <label 
                         htmlFor="email" 
-                        className="col-start-2 col-span-1"
+                        className="py-2 text-sm"
                     >
-                        Email: 
+                        Email
                     </label>
                     <input 
                         id="email" 
                         type="email" 
                         required 
-                        className="col-start-3 col-span-2"
+                        className="mb-2 rounded-2xl"
                     />
-                </div>
-                <div className="grid grid-cols-5 gap-6 pb-5">
                     <label 
                         htmlFor="pw" 
-                        className="col-start-2 col-span-1"
+                        className="py-2 text-sm"
                     >
-                        Password: 
+                        Password
                     </label>
                     <input 
                         id="pw" 
                         type="password" 
                         required 
-                        className="col-start-3 col-span-2"
+                        className="rounded-2xl"
                     />
+                    <div className="flex flex-row justify-center py-5 pt-10">
+                        <button type="submit" 
+                            className="w-full bg-white text-[#0b202f] border-transparent
+                            hover:border-white hover:text-white hover:bg-transparent"
+                        >
+                            Log In
+                        </button>
+                    </div>
+                </form>
+                <div className="flex flex-row items-center pt-5 mb-8">
+                    <p className="my-5 mr-2 text-sm">Don't have an account?</p>
+                    <a className='text-sm underline' href="/signup">Sign up</a>
                 </div>
-                <div className="flex flex-row justify-center py-5">
-                    <button type="submit">Log In</button>
-                </div>
-            </form>
-            <div className="flex flex-row justify-center pt-5">
-                <p className="my-1 mr-2">Don't have an account?</p>
-                <button onClick={() => navigate("/signup")}>Create an Account</button>
             </div>
             {errorMessage 
-                ? <div className="py-5 px-7 m-10 rounded-xl bg-pink-200 justify-self-center">
-                    <p>{errorMessage}</p>
-                </div>
-                : null
-            }
+                    ? <div className="py-5 px-7 m-10 rounded-xl bg-indigo-200 justify-self-center">
+                        <p>{errorMessage}</p>
+                    </div>
+                    : null
+                }
         </div>
     )
 }

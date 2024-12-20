@@ -33,7 +33,8 @@ const LandingPage = ({ user, setUser, events }) => {
                         <h1 className="text-white font-eight text-6xl p-5 pt-14">events</h1>
                         <EventContainer user={user} setUser={setUser} events={events}/>
                     </div>
-                    <div className="bg-[#6e8699] m-[-50px] mt-0 p-[50px] pt-10 pb-24">
+                    {/* [#6e8699] */}
+                    <div className="bg-indigo-200 m-[-50px] mt-0 p-[50px] pt-10 pb-24">
                         <h1 className="text-white font-eight text-6xl p-5 pt-20">user details</h1>
                         <UserCard user={user} setUser={setUser}/>
                     </div>
@@ -45,7 +46,8 @@ const LandingPage = ({ user, setUser, events }) => {
                     <section className="flex justify-center items-center h-[100vh] mt-[-90px]">
                         <h1 className="text-white font-eight text-9xl">NZPMC</h1>
                     </section>
-                    <div className="bg-[#6e8699] m-[-50px] mt-0 p-[50px] pb-32">
+                    {/* [#6e8699] */}
+                    <div className="bg-indigo-200 m-[-50px] mt-0 p-[50px] pb-32">
                         <h1 className="text-white font-eight text-6xl p-5 pt-20">events</h1>
                         <EventContainer user={user} setUser={setUser} events={events}/>
                     </div>
