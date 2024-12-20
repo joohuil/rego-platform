@@ -1,7 +1,9 @@
 import accountsService from '../services/accounts'
+import moment from 'moment-timezone';
 
 const EventCard = (props) => {
     const { name, description, date, user, setUser } = props
+    const nzDate = moment(date).tz('Pacific/Auckland').format('YYYY-MM-DD HH:mm:ss z');
 
     const handleJoin = () => {
         const editedUser = {
@@ -33,19 +35,22 @@ const EventCard = (props) => {
     }
 
     return (
-        <div className="flex flex-row border-2 border-black rounded-lg w-full p-5 my-5 justify-between">
-            <div className="flex flex-col justify-center">
-                <h3>{name}</h3>
-                <p>{description}</p>
-                <p>{date}</p>
+        <div className="flex flex-col border-2 border-solid border-[#8599a9] bg-[#8599a9] hover:bg-[#0b202f] hover:border-white hover:border-solid rounded-3xl p-10 my-5 justify-between w-[32%]">
+            <div className="flex flex-col justify-start">
+                <h3 className='text-white text-4xl font-extrabold'>{name}</h3>
+                <br/>
+                <p className='text-white text-base'>{description}</p>
+                <br/>
+                <p className='text-white font-bold text-base'>{nzDate}</p>
             </div>
-            <div className="flex flex-row h-min self-center">
+            <div className="flex flex-row h-min self-end">
                 {
                     user && user.email !== "admin@gmail.com"
                     ? 
                         <button 
                             onClick={isJoined() ? () => {}: handleJoin} 
-                            className={isJoined() ? "disabled text-gray-500 border-gray-500 hover:text-gray-500 hover:border-gray-500 cursor-default" : ""}
+                            className={isJoined() ? "disabled text-[#6e8699] border-[#6e8699] hover:text-[#6e8699] hover:border-[#6e8699] cursor-default mt-10" 
+                            : "hover:border-white hover:text-white border-transparent bg-white hover:bg-transparent text-[#0b202f] font-medium mt-10"}
                         >
                             {isJoined() ? 'Joined!' : 'Join'}
                         </button>

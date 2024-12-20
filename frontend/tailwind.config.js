@@ -2,7 +2,12 @@
 export default {
   content: ["./src/**/*.jsx"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        firula: ['firula', 'sans-serif'],
+        eight: ['eight', 'sans-serif']
+      },
+    },
   },
   plugins: [],
 }

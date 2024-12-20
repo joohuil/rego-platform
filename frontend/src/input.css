@@ -5,6 +5,7 @@
 @layer base {
     body {
         @apply m-[50px];
+        @apply bg-[#0b202f]
       }
       
       h1 {
@@ -24,14 +25,18 @@
       }
       
       button {
-        @apply py-1.5 px-2.5 rounded border-solid text-sm border-black border-[1px];
+        @apply py-2.5 px-5 rounded-2xl border-solid text-sm border-white text-white border-[1px];
       }
       
       button:hover {
-        @apply text-blue-400 border-blue-400;
+        @apply border-transparent bg-white text-[#0b202f] font-medium;
       }
       
       input {
-        @apply border-[1px] rounded border-solid py-[7px] px-[10px] border-black text-sm;
+        @apply rounded-xl p-[10px] px-[15px] border-transparent text-sm bg-[##8599a9] text-[#0b202f];
+      }
+
+      input:focus{
+        @apply outline-none
       }
 }
