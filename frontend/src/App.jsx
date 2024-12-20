@@ -18,7 +18,6 @@ function App() {
         .then(response => {
           console.log('promise fulfilled events')
           setEvents(response.data)
-          console.log(events)
         })
         .catch(error => {
           console.log(error.response.data.error)
@@ -30,7 +29,8 @@ function App() {
   function getEmailFromToken(parts) {
     try {
       const payload = JSON.parse(atob(parts[1].replace(/-/g, '+').replace(/_/g, '/')))
-      return payload.email
+      console.log("payload", payload.sub)
+      return payload.sub
     } catch (error) {
       console.error('Failed to extract email:', error.message)
       return null;
@@ -41,20 +41,21 @@ function App() {
     const token = localStorage.getItem("token")
     if (token) {
       const parts = token.split('.')
+      console.log("token in App during useEffect", parts)
       if (parts.length === 3) {
         const decodedToken = getEmailFromToken(parts)
-        console.log('decode', decodedToken)
+        console.log('decoded token', decodedToken)
         async function getUser() {
           await accountsService
             .get(decodedToken)
             .then(response => {
               setUser(response.data)
-              console.log("user", response.data)
+              console.log("email from token", response.data)
             })
             .catch(error => {
               console.log(error.response)
             })
-            console.log(user)
+            console.log(user, ": user from decoded token")
         }
         getUser()
       }
