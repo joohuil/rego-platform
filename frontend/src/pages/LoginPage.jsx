@@ -1,12 +1,14 @@
 import { useNavigate } from "react-router"
 import { useState, useEffect } from "react"
 import accountsService from '../services/accounts'
+import { useToken } from "../contexts/TokenContext";
 
 const LoginPage = ({ user, setUser }) => {
     const navigate = useNavigate()
+    const { token, setToken } = useToken()
 
     useEffect(() => {
-        console.log('us', user)
+        console.log('user when login page is loaded / user changes', user)
         if (user && user.email === "admin@gmail.com") {
             navigate ('/admin')
         } else if (user) {
@@ -18,17 +20,19 @@ const LoginPage = ({ user, setUser }) => {
 
     const handleLogin = (event) => {
         event.preventDefault()
-        console.log(event.target.email.value, event.target.pw.value)
+        console.log("login request with", event.target.email.value, event.target.pw.value)
 
         async function login(email, pw) {
             await accountsService
                 .login (email, pw)
                 .then (response => {
-                    const { user, token } = response.data
-                    console.log(response.data)
-                    setUser (user)
+                    const { account, token } = response.data
+                    console.log("user, token returned by login", response.data)
+                    console.log("user returned by login", account)
+                    setUser (account)
                     localStorage.setItem("token", token)
-                    console.log('get', localStorage.getItem("token"))
+                    setToken(token)
+                    console.log('token retrieved from local storage', localStorage.getItem("token"))
                     navigate("/")
                 })
                 .catch(error => {

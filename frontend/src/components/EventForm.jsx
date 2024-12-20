@@ -5,14 +5,13 @@ const EventForm = ({ events, setEvents, setErrorMessage }) => {
     const handleCreateEvent = (event) => {
         setErrorMessage(null)
         event.preventDefault()
-        console.log(event.target.name.value, event.target.description.value, event.target.date.value)
         const newEvent = {
             name: event.target.name.value,
             description: event.target.description.value,
             date: event.target.date.value
         }
 
-        console.log(newEvent)
+        console.log("created event", newEvent)
 
         async function createEvent() {
             await eventsService

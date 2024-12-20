@@ -1,7 +1,6 @@
 import AccountCard from './AccountCard'
 
 const AccountContainer = ({ accounts }) => {
-    console.log('accounts', accounts)
 
     return (
         <div className="border-black rounded-xl border-2 px-5 my-5">

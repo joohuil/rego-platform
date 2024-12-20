@@ -8,7 +8,7 @@ const SignupPage = () => {
 
     const handleSignup = (event) => {
         event.preventDefault()
-        console.log(event.target.email.value, event.target.pw.value, event.target.name.value)
+        console.log("sign up request with", event.target.email.value, event.target.pw.value, event.target.name.value)
         const newUser = {
             email: event.target.email.value,
             password: event.target.pw.value,
@@ -16,7 +16,7 @@ const SignupPage = () => {
             events: []
         }
 
-        console.log(newUser)
+        console.log("new user to pass through sign up", newUser)
 
         async function signup() {
             await accountsService

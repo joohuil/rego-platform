@@ -2,17 +2,20 @@ import { useNavigate } from "react-router"
 import { useEffect } from 'react'
 import EventContainer from '../components/EventContainer'
 import UserCard from "../components/UserCard"
+import { useToken } from "../contexts/TokenContext";
 
 const LandingPage = ({ user, setUser, events }) => {
-    console.log('landing p', setUser)
     const navigate = useNavigate()
+    const { token, setToken } = useToken()
+
     const handleSignOut = (e) => {
         setUser(null)
         localStorage.setItem("token", null)
+        setToken(null)
     }
 
     useEffect(() => {
-        console.log('us', user)
+        console.log('user when landing page is loaded / user changes', user)
         if (user && user.email === "admin@gmail.com") {
             navigate ('/admin')
         } 
