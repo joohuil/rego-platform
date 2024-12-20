@@ -4,15 +4,15 @@ import EventContainer from '../components/EventContainer'
 import UserCard from "../components/UserCard"
 
 const LandingPage = ({ user, setUser, events }) => {
-    console.log('landing p', setUser)
     const navigate = useNavigate()
+
     const handleSignOut = (e) => {
         setUser(null)
         localStorage.setItem("token", null)
     }
 
     useEffect(() => {
-        console.log('us', user)
+        console.log('user when landing page is loaded / user changes', user)
         if (user && user.email === "admin@gmail.com") {
             navigate ('/admin')
         } 

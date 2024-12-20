@@ -12,7 +12,7 @@ const EventCard = (props) => {
                 date: date
             })
         }
-        console.log('editedUser', editedUser)
+        console.log('edited user with joined events', editedUser)
 
         async function addEvent(editedUser) {
            await accountsService

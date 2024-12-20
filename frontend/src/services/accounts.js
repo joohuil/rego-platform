@@ -1,7 +1,7 @@
 import axios from 'axios'
 const baseUrl = 'http://localhost:8080/api/accounts'
 const token = localStorage.getItem("token")
-console.log('cur tok', token)
+console.log('current token from local storage in account service', token)
 
 const getAll = () => {
   return axios.get(baseUrl, {
@@ -20,7 +20,7 @@ const register = newObject => {
 }
 
 const update = (email, newObject) => {
-  console.log('cur tok', token)
+  console.log('current token before we pass it through the update function', token)
   return axios.put(`${baseUrl}/${email}`, newObject, {
     headers: { Authorization: `Bearer ${token}` },
   })

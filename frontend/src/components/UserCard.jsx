@@ -3,12 +3,12 @@ import accountsService from '../services/accounts'
 const UserCard = ({ user, setUser }) => {
     const handleEditName = (e) => {
         e.preventDefault()
-        console.log(e.target.newName.value)
+        console.log("name to change to", e.target.newName.value)
         const updatedUser = {
             ...user,
             name: e.target.newName.value
         }
-        console.log('upd', updatedUser)
+        console.log('updated user with new name, to pass through', updatedUser)
 
         async function editName (updatedUser) {
             await accountsService
@@ -16,7 +16,7 @@ const UserCard = ({ user, setUser }) => {
                 .then(response => {
                     console.log('promise fulfilled edit')
                     setUser(response.data)
-                    console.log(response.data)
+                    console.log('updated user with new name returned', response.data)
                     e.target.newName.value = ''
                 })
                 .catch (error => {

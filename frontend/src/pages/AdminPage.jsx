@@ -22,9 +22,9 @@ const AdminPage = ({ user, setUser, events, setEvents }) => {
                 .getAll()
                 .then(response => {
                     console.log('promise fulfilled accounts')
-                    console.log('resp', response.data)
+                    console.log('get all accounts', response.data)
                     setAccounts(response.data)
-                    console.log(accounts)
+                    console.log('accounts set as state', accounts)
                 })
                 .catch (error => {
                     console.log(error.response.data.error)
