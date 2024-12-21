@@ -31,15 +31,14 @@ const EventForm = ({ events, setEvents, setErrorMessage }) => {
     }
 
     return (
-        <div className="flex flex-col border-2 border-black rounded-lg h-min p-5 my-5">
-            <h2 className="p-3">Create Event</h2>
-            <form onSubmit={handleCreateEvent}>
+        <div className="flex flex-col border-2 border-[#8599a9] bg-indigo-300 rounded-2xl h-min p-5 my-5 pt-14">
+            <form onSubmit={handleCreateEvent} className='text-white'>
                 <div className="grid grid-cols-5 gap-6 py-5">
                     <label 
                         htmlFor="name" 
-                        className="col-start-2 col-span-1"
+                        className="col-start-2 col-span-1 text-lg pt-2"
                     >
-                        Name: 
+                        Name
                     </label>
                     <input 
                         id="name" 
@@ -51,22 +50,22 @@ const EventForm = ({ events, setEvents, setErrorMessage }) => {
                 <div className="grid grid-cols-5 gap-6">
                     <label 
                         htmlFor="description" 
-                        className="col-start-2 col-span-1"
+                        className="col-start-2 col-span-1 text-lg pt-2"
                     >
-                        Description: 
+                        Description
                     </label>
                     <textarea 
                         id="description" 
                         required 
-                        className="col-start-3 col-span-2 border-[1px] rounded border-black resize-none border-solid py-[7px] px-[10px] text-sm"
+                        className="col-start-3 col-span-2 border-[1px] resize-none py-2 px-4 text-sm"
                     />
                 </div>
                 <div className="grid grid-cols-5 gap-6 py-5">
                     <label 
                         htmlFor="date" 
-                        className="col-start-2 col-span-1"
+                        className="col-start-2 col-span-1 text-lg pt-2"
                     >
-                        Date: 
+                        Date
                     </label>
                     <input 
                         id="date" 

@@ -32,11 +32,11 @@
         @apply border-transparent bg-white text-[#0b202f] font-medium;
       }
       
-      input {
+      input, textarea {
         @apply rounded-xl p-[10px] px-[15px] border-transparent text-sm bg-[##8599a9] text-[#0b202f];
       }
 
-      input:focus{
+      input:focus, textarea:focus {
         @apply outline-none
       }
 }

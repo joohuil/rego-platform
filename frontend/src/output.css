@@ -608,7 +608,7 @@ button:hover {
   color: rgb(11 32 47 / var(--tw-text-opacity, 1));
 }
 
-input {
+input, textarea {
   border-radius: 0.75rem;
   border-color: transparent;
   background-color: ##8599a9;
@@ -621,7 +621,7 @@ input {
   color: rgb(11 32 47 / var(--tw-text-opacity, 1));
 }
 
-input:focus {
+input:focus, textarea:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
 }
@@ -650,18 +650,21 @@ input:focus {
   margin: -50px;
 }
 
-.my-1 {
-  margin-top: 0.25rem;
-  margin-bottom: 0.25rem;
-}
-
 .my-5 {
   margin-top: 1.25rem;
   margin-bottom: 1.25rem;
 }
 
-.mb-7 {
-  margin-bottom: 1.75rem;
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
+.ml-\[-15px\] {
+  margin-left: -15px;
 }
 
 .mr-2 {
@@ -688,80 +691,12 @@ input:focus {
   margin-top: -90px;
 }
 
-.ml-\[-5px\] {
-  margin-left: -5px;
-}
-
-.ml-\[-40px\] {
-  margin-left: -40px;
-}
-
-.ml-\[-30px\] {
-  margin-left: -30px;
-}
-
-.ml-\[-20px\] {
-  margin-left: -20px;
-}
-
-.ml-\[-15px\] {
-  margin-left: -15px;
-}
-
-.mt-24 {
-  margin-top: 6rem;
-}
-
-.mt-\[20\%\] {
-  margin-top: 20%;
-}
-
-.mt-\[10\%\] {
-  margin-top: 10%;
-}
-
-.mt-\[8\%\] {
-  margin-top: 8%;
-}
-
 .mt-\[7\%\] {
   margin-top: 7%;
 }
 
-.mt-\[5\%\] {
-  margin-top: 5%;
-}
-
-.mb-5 {
-  margin-bottom: 1.25rem;
-}
-
-.mb-8 {
-  margin-bottom: 2rem;
-}
-
-.mb-16 {
-  margin-bottom: 4rem;
-}
-
-.mb-3 {
-  margin-bottom: 0.75rem;
-}
-
-.mb-2 {
-  margin-bottom: 0.5rem;
-}
-
-.mb-14 {
-  margin-bottom: 3.5rem;
-}
-
-.mb-\[-5px\] {
-  margin-bottom: -5px;
-}
-
-.mt-\[6\%\] {
-  margin-top: 6%;
+.mt-14 {
+  margin-top: 3.5rem;
 }
 
 .flex {
@@ -781,32 +716,20 @@ input:focus {
   height: min-content;
 }
 
+.w-\[300px\] {
+  width: 300px;
+}
+
 .w-\[32\%\] {
   width: 32%;
-}
-
-.w-full {
-  width: 100%;
-}
-
-.w-48 {
-  width: 12rem;
-}
-
-.w-80 {
-  width: 20rem;
-}
-
-.w-96 {
-  width: 24rem;
 }
 
 .w-\[500px\] {
   width: 500px;
 }
 
-.w-\[300px\] {
-  width: 300px;
+.w-full {
+  width: 100%;
 }
 
 .cursor-default {
@@ -815,10 +738,6 @@ input:focus {
 
 .resize-none {
   resize: none;
-}
-
-.grid-cols-2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .grid-cols-5 {
@@ -865,8 +784,12 @@ input:focus {
   gap: 1.5rem;
 }
 
-.gap-8 {
-  gap: 2rem;
+.gap-\[1\%\] {
+  gap: 1%;
+}
+
+.gap-\[2\%\] {
+  gap: 2%;
 }
 
 .self-end {
@@ -877,8 +800,8 @@ input:focus {
   justify-self: center;
 }
 
-.rounded {
-  border-radius: 0.25rem;
+.rounded-2xl {
+  border-radius: 1rem;
 }
 
 .rounded-3xl {
@@ -891,10 +814,6 @@ input:focus {
 
 .rounded-xl {
   border-radius: 0.75rem;
-}
-
-.rounded-2xl {
-  border-radius: 1rem;
 }
 
 .border-2 {
@@ -933,14 +852,9 @@ input:focus {
   border-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
 }
 
-.border-indigo-300 {
+.border-\[\#628699\] {
   --tw-border-opacity: 1;
-  border-color: rgb(165 180 252 / var(--tw-border-opacity, 1));
-}
-
-.bg-\[\#6e8699\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(110 134 153 / var(--tw-bg-opacity, 1));
+  border-color: rgb(98 134 153 / var(--tw-border-opacity, 1));
 }
 
 .bg-\[\#8599a9\] {
@@ -948,29 +862,9 @@ input:focus {
   background-color: rgb(133 153 169 / var(--tw-bg-opacity, 1));
 }
 
-.bg-pink-200 {
+.bg-indigo-200 {
   --tw-bg-opacity: 1;
-  background-color: rgb(251 207 232 / var(--tw-bg-opacity, 1));
-}
-
-.bg-white {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
-}
-
-.bg-\[\#203341\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(32 51 65 / var(--tw-bg-opacity, 1));
-}
-
-.bg-\[\#162937\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(22 41 55 / var(--tw-bg-opacity, 1));
-}
-
-.bg-\[\#63717c\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(99 113 124 / var(--tw-bg-opacity, 1));
+  background-color: rgb(199 210 254 / var(--tw-bg-opacity, 1));
 }
 
 .bg-indigo-300 {
@@ -978,14 +872,29 @@ input:focus {
   background-color: rgb(165 180 252 / var(--tw-bg-opacity, 1));
 }
 
-.bg-indigo-400 {
+.bg-white {
   --tw-bg-opacity: 1;
-  background-color: rgb(129 140 248 / var(--tw-bg-opacity, 1));
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
 
-.bg-indigo-200 {
+.bg-\[\#0b202f\] {
   --tw-bg-opacity: 1;
-  background-color: rgb(199 210 254 / var(--tw-bg-opacity, 1));
+  background-color: rgb(11 32 47 / var(--tw-bg-opacity, 1));
+}
+
+.bg-\[\#6e8699\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(110 134 153 / var(--tw-bg-opacity, 1));
+}
+
+.bg-cyan-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(103 232 249 / var(--tw-bg-opacity, 1));
+}
+
+.bg-cyan-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(165 243 252 / var(--tw-bg-opacity, 1));
 }
 
 .bg-none {
@@ -1028,6 +937,16 @@ input:focus {
   padding-right: 10px;
 }
 
+.py-10 {
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
 .py-5 {
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
@@ -1038,29 +957,23 @@ input:focus {
   padding-bottom: 7px;
 }
 
-.py-10 {
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
+.px-2 {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
-.py-24 {
-  padding-top: 6rem;
-  padding-bottom: 6rem;
+.px-4 {
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
-.py-16 {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+.px-3 {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
-.py-1 {
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-}
-
-.py-2 {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+.pb-12 {
+  padding-bottom: 3rem;
 }
 
 .pb-20 {
@@ -1087,6 +1000,10 @@ input:focus {
   padding-top: 3.5rem;
 }
 
+.pt-16 {
+  padding-top: 4rem;
+}
+
 .pt-20 {
   padding-top: 5rem;
 }
@@ -1095,28 +1012,52 @@ input:focus {
   padding-top: 1.25rem;
 }
 
-.pt-\[20\%\] {
-  padding-top: 20%;
+.pt-12 {
+  padding-top: 3rem;
 }
 
-.pt-16 {
-  padding-top: 4rem;
+.pb-16 {
+  padding-bottom: 4rem;
+}
+
+.pt-6 {
+  padding-top: 1.5rem;
+}
+
+.pt-32 {
+  padding-top: 8rem;
+}
+
+.pt-48 {
+  padding-top: 12rem;
+}
+
+.pt-40 {
+  padding-top: 10rem;
 }
 
 .pb-3 {
   padding-bottom: 0.75rem;
 }
 
-.pt-1 {
-  padding-top: 0.25rem;
+.pb-2 {
+  padding-bottom: 0.5rem;
+}
+
+.pb-1 {
+  padding-bottom: 0.25rem;
+}
+
+.pt-2 {
+  padding-top: 0.5rem;
+}
+
+.pt-3 {
+  padding-top: 0.75rem;
 }
 
 .pt-7 {
   padding-top: 1.75rem;
-}
-
-.pb-12 {
-  padding-bottom: 3rem;
 }
 
 .font-eight {
@@ -1153,9 +1094,19 @@ input:focus {
   line-height: 1.25rem;
 }
 
-.text-xs {
-  font-size: 0.75rem;
-  line-height: 1rem;
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
 }
 
 .font-bold {
@@ -1172,6 +1123,18 @@ input:focus {
 
 .font-semibold {
   font-weight: 600;
+}
+
+.font-normal {
+  font-weight: 400;
+}
+
+.font-light {
+  font-weight: 300;
+}
+
+.font-extralight {
+  font-weight: 200;
 }
 
 .text-\[\#0b202f\] {
@@ -1224,11 +1187,6 @@ input:focus {
 .hover\:text-white:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
-}
-
-.focus\:border-white:focus {
-  --tw-border-opacity: 1;
-  border-color: rgb(255 255 255 / var(--tw-border-opacity, 1));
 }
 
 .focus\:bg-transparent:focus {

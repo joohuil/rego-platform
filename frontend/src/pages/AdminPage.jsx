@@ -44,18 +44,16 @@ const AdminPage = ({ user, setUser, events, setEvents }) => {
 
     return (
         <div>
-            <h1 className="mb-7">Admin</h1>
             <div className="flex flex-row justify-end">
                 <button onClick={handleSignOut}>Sign Out</button> 
             </div>
-            <div className="grid grid-cols-2 gap-8">
-                <div>
-                    <h2>Events</h2>
+            <section className="flex flex-col">
+                <div className="pb-20">
+                    <h1 className="text-white font-eight text-6xl p-5 pt-14">events</h1>
                     <EventContainer events={events}/>
-                    <h2>Accounts</h2>
-                    <AccountContainer accounts={accounts}/>
                 </div>
-                <div>
+                <div className="bg-indigo-200 m-[-50px] mt-0 p-[50px] pt-6 pb-20">
+                    <h1 className="text-white font-eight text-6xl p-5 pt-20">create event</h1>
                     <EventForm events={events} setUser={(u) => {}} setEvents={setEvents} setErrorMessage={setErrorMessage}/>
                     {errorMessage 
                         ? <div className="py-5 px-7 m-10 rounded-xl bg-indigo-200 justify-self-center">
@@ -64,7 +62,11 @@ const AdminPage = ({ user, setUser, events, setEvents }) => {
                         : null
                     }
                 </div>
-            </div>
+            </section>
+            <section>
+                <h1 className="text-white font-eight text-6xl p-5 pt-40">accounts</h1>
+                <AccountContainer accounts={accounts}/>
+            </section>
         </div>
     )
 }

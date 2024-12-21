@@ -34,7 +34,7 @@ const SignupPage = () => {
 
     return (
         <div className="flex flex-col justify-center items-center">
-            <div className="border-white border-2 rounded-2xl bg-indigo-300 w-[500px] mt-[7%] text-white flex flex-col items-center">
+            <div className="border-white border-2 rounded-2xl bg-[#6e8699] w-[500px] mt-[7%] text-white flex flex-col items-center">
                 <form onSubmit={handleSignup} className="w-[300px] flex flex-col pt-14 pb-5">
                     <label 
                         htmlFor="email" 
