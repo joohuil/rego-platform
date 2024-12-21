@@ -699,12 +699,20 @@ input:focus, textarea:focus {
   margin-top: 3.5rem;
 }
 
+.block {
+  display: block;
+}
+
 .flex {
   display: flex;
 }
 
 .grid {
   display: grid;
+}
+
+.hidden {
+  display: none;
 }
 
 .h-\[100vh\] {

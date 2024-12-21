@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 import accountsService from '../services/accounts'
 import { useNavigate } from "react-router"
 import { useToken } from "../contexts/TokenContext";
+import ViewSelector from "../components/ViewSelector"
 
 const AdminPage = ({ user, setUser, events, setEvents }) => {
     const { token, setToken } = useToken();
@@ -42,29 +43,60 @@ const AdminPage = ({ user, setUser, events, setEvents }) => {
         navigate('/')
     }
 
+    // section visibility
+
+    const sections = [
+        {
+            id: 'eventSection',
+            text: "Events",
+            handleButtonClick: () => selectSection('eventSection'),
+        },
+        {
+            id: 'accountSection',
+            text: "Accounts",
+            handleButtonClick: () => selectSection('accountSection'),
+        }
+    ];
+
+    function selectSection(selectedSection) {
+        sections.forEach(section => {
+            const sectionElement = document.getElementById(section.id)
+            if (section.id === selectedSection) {
+                sectionElement.style.display = "block"
+            } else {
+                sectionElement.style.display = "none"
+            }
+        })
+    }
+
     return (
         <div>
-            <div className="flex flex-row justify-end">
+            <div className="flex flex-row justify-between pb-5">
+                <ViewSelector sections={sections}/>
                 <button onClick={handleSignOut}>Sign Out</button> 
             </div>
-            <section className="flex flex-col">
-                <div className="pb-20">
-                    <h1 className="text-white font-eight text-6xl p-5 pt-14">events</h1>
-                    <EventContainer events={events}/>
-                </div>
-                <div className="bg-indigo-200 m-[-50px] mt-0 p-[50px] pt-6 pb-20">
-                    <h1 className="text-white font-eight text-6xl p-5 pt-20">create event</h1>
-                    <EventForm events={events} setUser={(u) => {}} setEvents={setEvents} setErrorMessage={setErrorMessage}/>
-                    {errorMessage 
-                        ? <div className="py-5 px-7 m-10 rounded-xl bg-indigo-200 justify-self-center">
-                            <p>{errorMessage}</p>
-                        </div>
-                        : null
-                    }
+
+            <section id="eventSection">
+                <div className="flex flex-col">
+                    <div className="pb-20">
+                        <h1 className="text-white font-eight text-6xl p-5 pt-20">events</h1>
+                        <EventContainer events={events}/>
+                    </div>
+                    <div className="bg-indigo-200 m-[-50px] mt-0 p-[50px] pt-6 pb-20">
+                        <h1 className="text-white font-eight text-6xl p-5 pt-20">create event</h1>
+                        <EventForm events={events} setUser={(u) => {}} setEvents={setEvents} setErrorMessage={setErrorMessage}/>
+                        {errorMessage 
+                            ? <div className="py-5 px-7 m-10 rounded-xl bg-indigo-200 justify-self-center">
+                                <p>{errorMessage}</p>
+                            </div>
+                            : null
+                        }
+                    </div>
                 </div>
             </section>
-            <section>
-                <h1 className="text-white font-eight text-6xl p-5 pt-40">accounts</h1>
+
+            <section id="accountSection" className="hidden">
+                <h1 className="text-white font-eight text-6xl p-5 pt-20">accounts</h1>
                 <AccountContainer accounts={accounts}/>
             </section>
         </div>
